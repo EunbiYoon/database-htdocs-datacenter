@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Comment{% endblock %}
+
+{% block container %}
+    <h2>Create a New Comment</h2>
+    
+    <p>Category: {{ post_detail.category }}</p>
+    <p>Week: {{ post_detail.week }}</p>
+
+    <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="week" value="{{ post.week.pk }}">
+    <input type="hidden" name="category" value="{{ post.category.pk }}">
+    {{ form.comment_body }}
+    <button type="submit">Submit</button>
+    </form>
+
+    <h2>Comments</h2>
+    <ul>
+    {% for comment in comments %}
+        <li>{{ comment.author.username }} said: {{ comment.comment_body }} {{ comment.date_added }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
