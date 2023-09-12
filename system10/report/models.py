@@ -21,7 +21,7 @@ class Post(models.Model):
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
     week=models.ForeignKey(Week, on_delete=models.CASCADE)
     author=models.ForeignKey(User, on_delete=models.CASCADE)
-    date_added=models.DateTimeField()
+    date_added=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return str(self.category)+ ' | ' + str(self.week)
     class Meta:
@@ -31,7 +31,7 @@ class Comment(models.Model):
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
     week=models.ForeignKey(Week, on_delete=models.CASCADE)
     author=models.ForeignKey(User, on_delete=models.CASCADE)
-    date_added=models.DateTimeField()
+    date_added=models.DateTimeField(auto_now_add=True)
     comment_body = models.TextField()
     # def save(self, *args, **kwargs):
     #     self.date_added = timezone.now()
